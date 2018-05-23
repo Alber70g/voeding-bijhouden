@@ -1,0 +1,19 @@
+{
+  "name": "voeding-bijhouden",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "cra-hyperapp": "^0.0.5",
+    "hyperapp": "^1.2.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "hyperapp-scripts",
+    "build": "hyperapp-scripts build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
