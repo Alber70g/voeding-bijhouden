@@ -31,7 +31,7 @@ const actions = {
       newVoeding: newVoedingState,
     }
   },
-  remove: (id) => (state) => {
+  remove: (id) => (state, actions) => {
     setTimeout(actions.saveLocalstorage)
     return { voedingen: state.voedingen.filter((v) => v.id !== id) }
   },
