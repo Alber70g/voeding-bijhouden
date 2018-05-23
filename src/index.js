@@ -1,6 +1,6 @@
 import { h, app } from 'hyperapp'
 import { newVoedingView, newVoedingState, newVoedingActions } from './newVoeding'
-import { renderVoeding } from './utils'
+import { renderVoeding, guid } from './utils'
 
 const state = {
   voedingen: [],
@@ -17,9 +17,8 @@ const actions = {
   },
   newVoeding: newVoedingActions,
   addNewVoeding: () => (state, actions) => {
-    setTimeout(() => {
-      actions.saveLocalstorage()
-    })
+    setTimeout(actions.saveLocalstorage)
+    setTimeout(appActions.sortVoedingen)
     return {
       views: {
         ...state.views,
@@ -27,27 +26,41 @@ const actions = {
       },
       voedingen: [
         ...state.voedingen,
-        { start: state.newVoeding.start, duur: state.newVoeding.duur },
+        { id: guid(), start: state.newVoeding.start, duur: state.newVoeding.duur },
       ],
       newVoeding: newVoedingState,
     }
+  },
+  remove: (id) => (state) => {
+    setTimeout(actions.saveLocalstorage)
+    return { voedingen: state.voedingen.filter((v) => v.id !== id) }
   },
   loadLocalstorage: (voedingenString) => {
     if (voedingenString) {
       const voedingen = JSON.parse(voedingenString).voedingen
       const voedingenWithDate = voedingen.map((v) => ({ ...v, start: new Date(v.start) }))
+      setTimeout(appActions.sortVoedingen)
       return { voedingen: voedingenWithDate }
     }
   },
   saveLocalstorage: () => (state) => {
     localStorage.setItem('voedingen', JSON.stringify({ voedingen: state.voedingen }))
   },
+  sortVoedingen: () => (state) => ({
+    voedingen: state.voedingen.sort((a, b) => a.start > b.start),
+  }),
 }
 
 const view = (state, actions) => (
   <div>
     <h1>Voedingen</h1>
-    <ul>{state.voedingen.map((v) => <li>{renderVoeding(v)}</li>)}</ul>
+    <ul>
+      {state.voedingen.map((v) => (
+        <li key={v.id}>
+          <span onclick={() => actions.remove(v.id)}>🗑</span> {renderVoeding(v)}
+        </li>
+      ))}
+    </ul>
     {state.views.newVoeding ? (
       newVoedingView(state, actions)
     ) : (

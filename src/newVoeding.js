@@ -61,11 +61,10 @@ export const newVoedingView = (state, actions) => (
         Start tijd <strong>{idx(state.newVoeding.start, getTime)}</strong>
       </label>
       <ul>
-        <button onclick={() => actions.newVoeding.addStartTime(5)}>+5</button>
-        <button onclick={() => actions.newVoeding.addStartTime(1)}>+1</button>
-        <button onclick={() => actions.newVoeding.addStartTime(-1)}>-1</button>
         <button onclick={() => actions.newVoeding.addStartTime(-5)}>-5</button>
-        <button onclick={() => actions.newVoeding.addStartTime(-5)}>-10</button>
+        <button onclick={() => actions.newVoeding.addStartTime(-1)}>-1</button>
+        <button onclick={() => actions.newVoeding.addStartTime(1)}>+1</button>
+        <button onclick={() => actions.newVoeding.addStartTime(5)}>+5</button>
       </ul>
     </p>
     <p>{idx(state.newVoeding.start, renderVoeding, state.newVoeding)}</p>
