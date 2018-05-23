@@ -25,6 +25,10 @@ button {
   text-decoration: none;
 }
 
+button.selected {
+  background: green;
+}
+
 button:not(:first-child):not(:last-child) {
   margin: 2px;
 }

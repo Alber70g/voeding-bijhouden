@@ -7,7 +7,7 @@ const state = {
   newVoeding: newVoedingState,
   views: {
     newVoeding: false,
-    debug: false,
+    debug: true,
   },
 }
 
@@ -26,7 +26,12 @@ const actions = {
       },
       voedingen: [
         ...state.voedingen,
-        { id: guid(), start: state.newVoeding.start, duur: state.newVoeding.duur },
+        {
+          id: guid(),
+          start: state.newVoeding.start,
+          duur: state.newVoeding.duur,
+          kant: state.newVoeding.kant,
+        },
       ],
       newVoeding: newVoedingState,
     }

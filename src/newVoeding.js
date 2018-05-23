@@ -7,6 +7,7 @@ export const newVoedingState = {
 }
 
 export const newVoedingActions = {
+  setKant: (kant) => ({ kant }),
   setInitialState: () => ({ start: new Date(), duur: 15 }),
   addStartTime: (amount) => (state) => {
     const newStartTime = new Date(state.start.getTime() + amount * 1000 * 60)
@@ -44,6 +45,20 @@ export const newVoedingActions = {
 export const newVoedingView = (state, actions) => (
   <div oncreate={actions.newVoeding.setInitialState}>
     <h2>Nieuwe voeding</h2>
+    <p>
+      <button
+        class={state.newVoeding.kant === 'links' ? 'selected' : ''}
+        onclick={() => actions.newVoeding.setKant('links')}
+      >
+        Links
+      </button>
+      <button
+        class={state.newVoeding.kant === 'rechts' ? 'selected' : ''}
+        onclick={() => actions.newVoeding.setKant('rechts')}
+      >
+        Rechts
+      </button>
+    </p>
     <p>
       <label oncreate={setStyle('display: block;')}>
         Duur: <strong>{state.newVoeding.duur} minuten</strong>
