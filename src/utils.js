@@ -5,6 +5,10 @@ export const renderVoeding = (v) => {
 
   return (
     <span>
+      {v.start.toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+      })}{' '}
       {v.kant} {v.duur} minuten
       <br />
       {v.start.toLocaleString([], {

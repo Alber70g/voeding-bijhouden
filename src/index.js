@@ -7,12 +7,13 @@ const state = {
   newVoeding: newVoedingState,
   views: {
     newVoeding: false,
-    debug: true,
+    debug: false,
   },
 }
 
 const actions = {
   views: {
+    toggleDebug: () => (state) => ({ debug: !state.debug }),
     newVoeding: () => ({ newVoeding: true }),
   },
   newVoeding: newVoedingActions,
@@ -58,7 +59,7 @@ const actions = {
 
 const view = (state, actions) => (
   <div>
-    <h1>Voedingen</h1>
+    <h1 onclick={actions.views.toggleDebug}>Voedingen</h1>
     <ul>
       {state.voedingen.map((v) => (
         <li key={v.id}>

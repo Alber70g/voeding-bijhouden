@@ -69,7 +69,10 @@ export const newVoedingView = (state, actions) => (
         <button onclick={() => actions.newVoeding.setDuurTime(15)}>15</button>
         <button onclick={() => actions.newVoeding.setDuurTime(20)}>20</button>
       </ul>
-      <input type="number" onblur={(e) => actions.newVoeding.setDuurTime(e.target.value)} />
+      <label>
+        Invoeren{' '}
+        <input type="number" onblur={(e) => actions.newVoeding.setDuurTime(e.target.value)} />
+      </label>
     </p>
     <p>
       <label oncreate={setStyle('display: block;')}>
@@ -84,7 +87,9 @@ export const newVoedingView = (state, actions) => (
     </p>
     <p>{idx(state.newVoeding.start, renderVoeding, state.newVoeding)}</p>
     <p>
-      <button onclick={actions.addNewVoeding}>Voeding toevoegen</button>
+      <button class="selected" onclick={actions.addNewVoeding}>
+        Voeding toevoegen
+      </button>
     </p>
   </div>
 )

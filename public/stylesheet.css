@@ -11,6 +11,7 @@ body {
 }
 
 button {
+  margin-right: 2px;
   background: #3498db;
   background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
   background-image: -moz-linear-gradient(top, #3498db, #2980b9);
@@ -27,10 +28,6 @@ button {
 
 button.selected {
   background: green;
-}
-
-button:not(:first-child):not(:last-child) {
-  margin: 2px;
 }
 
 ul {
